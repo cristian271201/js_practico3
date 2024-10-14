@@ -5,10 +5,10 @@ let b = 10;
 console.log("La suma de a y b es:", a + b)
 
 //Ejercicio 3
-/*
+
 let nombre = prompt("¿Cual es tu nombre?")
 console.log("Hola   " + nombre + ", bienvenido")
-*/
+
 
 //2. Operadores lógicos y condicionales
 //Ejercicio 1
@@ -23,7 +23,7 @@ if (n1 > n2) {
 console.log("El mayor de los números es: " + n3)
 
 //Ejercicio 2
-/*
+
 let ingresado = prompt("Ingrese un numero e indicaré si es par o impar ")
 let numero = parseInt(ingresado)
 if (numero % 2 == 0) {
@@ -31,7 +31,7 @@ if (numero % 2 == 0) {
 } else {
   console.log("El numero " + numero + ", es impar")
 }
-*/
+
 
 //3. Operadores de asignación y bucles
 //Ejercicio 1
@@ -42,14 +42,14 @@ while (inicial > 0) {
 }
 
 //Ejercicio 2
-/*
+
 let valor;
 do {
   valor = prompt("Ingresa un numero mayor a 100:")
   valor = parseInt(valor)
 } while (valor < 100)
 console.log("Ingresaste un número mayor a 100: " + valor)
-*/
+
 
 //4. Funciones de JavaScript
 //Ejercicio 1
@@ -140,3 +140,77 @@ mostrarAlertaBtn.addEventListener('click', () => {
   mostrarAlerta();
 });
 
+//8.Eventos en DOM
+//Ejercicio 1
+
+function mostrarTextoEnConsola(event) {
+  console.log(event.target.textContent);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  let lista = document.getElementById('miLista');
+  let elementos = lista.getElementsByTagName('li');
+
+  for (let i = 0; i < elementos.length; i++) {
+    elementos[i].addEventListener('click', mostrarTextoEnConsola);
+  }
+});
+
+//Ejercicio 2
+// Función para deshabilitar el campo de texto
+function deshabilitarCampoTexto() {
+  document.getElementById('miCampoTexto').disabled = true;
+}
+
+// Función para habilitar el campo de texto
+function habilitarCampoTexto() {
+  document.getElementById('miCampoTexto').disabled = false;
+}
+
+const habilitar = document.getElementById("habilitarBtn");
+const deshabilitar = document.getElementById("deshabilitarBtn");
+habilitar.addEventListener('click', () => {
+  habilitarCampoTexto()
+});
+deshabilitar.addEventListener('click', () => {
+  deshabilitarCampoTexto()
+})
+
+//9. LocalStorage
+//Ejercicio 1
+
+const guardarCorreo = () => {
+  const correo = document.getElementById("correo").value;
+  localStorage.setItem("correo", JSON.stringify(correo));
+  mostrarCorreoGuardado();
+}
+
+const mostrarCorreoGuardado = () => {
+  let correoGuardado = localStorage.getItem("correo");
+  let correoDiv = document.getElementById("correoGuardado");
+  let eliminarBtn = document.getElementById("eliminarBtn");
+
+  if (correoGuardado) {
+    correoDiv.textContent = 'Correo guardado: ' + correoGuardado;
+    eliminarBtn.style.display = 'inline-block';
+  } else {
+    correoDiv.textContent = '';
+    eliminarBtn.style.display = 'none';
+  }
+}
+
+const eliminarCorreo = () => {
+  localStorage.removeItem('correo');
+  mostrarCorreoGuardado();
+}
+
+
+document.getElementById("form").addEventListener('submit', function (event) {
+  event.preventDefault();
+  guardarCorreo();
+});
+
+document.getElementById("eliminarBtn").addEventListener('click', () => {
+  eliminarCorreo();
+})
+document.addEventListener('DOMContentLoaded', mostrarCorreoGuardado);
