@@ -5,10 +5,10 @@ let b = 10;
 console.log("La suma de a y b es:", a + b)
 
 //Ejercicio 3
-
+/*
 let nombre = prompt("¿Cual es tu nombre?")
 console.log("Hola   " + nombre + ", bienvenido")
-
+*/
 
 //2. Operadores lógicos y condicionales
 //Ejercicio 1
@@ -23,7 +23,7 @@ if (n1 > n2) {
 console.log("El mayor de los números es: " + n3)
 
 //Ejercicio 2
-
+/*
 let ingresado = prompt("Ingrese un numero e indicaré si es par o impar ")
 let numero = parseInt(ingresado)
 if (numero % 2 == 0) {
@@ -31,7 +31,7 @@ if (numero % 2 == 0) {
 } else {
   console.log("El numero " + numero + ", es impar")
 }
-
+*/
 
 //3. Operadores de asignación y bucles
 //Ejercicio 1
@@ -42,14 +42,14 @@ while (inicial > 0) {
 }
 
 //Ejercicio 2
-
+/*
 let valor;
 do {
   valor = prompt("Ingresa un numero mayor a 100:")
   valor = parseInt(valor)
 } while (valor < 100)
 console.log("Ingresaste un número mayor a 100: " + valor)
-
+*/
 
 //4. Funciones de JavaScript
 //Ejercicio 1
@@ -66,4 +66,77 @@ function convertirCelciusFarenheit(c) {
   return f;
 }
 console.log("30°C son equivalentes a " + convertirCelciusFarenheit(30) + "°F")
+
+//5. Objetos en JavaScript
+//Ejercicio 1
+let persona = {
+  nombre: 'Analia',
+  edad: 30,
+  ciudad: 'Mendoza',
+  cambiarCiudad: function (nuevaCiudad) {
+    this.ciudad = nuevaCiudad;
+  }
+};
+persona.cambiarCiudad('San Rafael')
+//Propiedades acrualizadas
+console.log("Persona: " + persona.nombre + ", Edad: " + persona.edad + ", Ciudad: " + persona.ciudad);
+
+//Ejercicio 2
+let libro = {
+  titulo: "El  Quijote",
+  autor: 'Miguel de Cervantes Saavedra',
+  anio: 1605,
+  esAntiguo: function () {
+    let anioActual = new Date().getFullYear();
+    let aniosDesdePublicacion = anioActual - this.anio;
+    return aniosDesdePublicacion > 10;
+  }
+};
+console.log("El libro " + libro.titulo + " es antiguo : " + libro.esAntiguo());
+
+//6. Arrays
+//Ejercicio 1
+let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let numerosMultiplicados = numeros.map((elemento) => elemento * 2);
+
+console.log("Números originales:", numeros);
+console.log("Números múltiplicados por 2:", numerosMultiplicados);
+
+//Ejercicio 2
+let pares = [];
+for (let i = 1; i <= 20; i++) {
+  if (i % 2 === 0) {
+    pares.push(i);
+  }
+
+  if (pares.length === 10) {
+    break;
+  }
+}
+
+console.log("Primeros diez números pares:", pares);
+
+//7. Introducciona DOM
+//Ejercicio 1
+function cambiarColorAParrafos() {
+  let parrafos = document.querySelectorAll('p');
+  parrafos.forEach(function (parrafo) {
+    parrafo.style.color = 'blue';
+  });
+}
+
+const cambiarColorBtn = document.getElementById("cambiarColorBtn");
+cambiarColorBtn.addEventListener('click', () => {
+  cambiarColorAParrafos();
+});
+
+//Ejercicio 2
+function mostrarAlerta() {
+  let ingreso = document.getElementById('ingreso').value;
+  alert("Has ingresado: " + ingreso)
+}
+const mostrarAlertaBtn = document.getElementById('mostrarAlertaBtn');
+mostrarAlertaBtn.addEventListener('click', () => {
+  mostrarAlerta();
+});
 
